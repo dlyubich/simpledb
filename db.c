@@ -204,7 +204,20 @@ int main(int argc, char *argv[]) {
 		.isquiet = false
 	};
 
-	argp_parse(&parser_config, argc, argv, ARGP_IN_ORDER, 0, &args);
+	if (argc > 1)
+	{
+		error_t ret;
+		if ((ret = argp_parse(&parser_config, argc, argv, ARGP_IN_ORDER, 0, &args)))
+		{
+			perror(strerror(ret));
+			exit(ret);
+		}
+	}
+	else
+	{
+		printf("No arguments. See --help\n");
+		exit(EXIT_FAILURE);
+	}
 
 	dbg("Parsed argument values:\n"
 	    "\tdir     = %s\n"
