@@ -70,9 +70,14 @@ static struct dbitem make_item(const char *str)
 	struct dbitem ret = {0};
 	/* See expaination of how it works in main */
 	/* ord: last -> first -> email	*/
+	if (NULL == str)
+		return (ret);
 	char *bkp, *ptr, *last_name, *first_name, *email, *date;
 	bkp = ptr = last_name = first_name = email = date = strdup(str);	/* need it mutable */
 
+	if (NULL == bkp)
+		err_exit(0, EM_ALLOC);
+	
 	strsep(&ptr, ";");
 	first_name = ptr;
 	strsep(&ptr, ";");
