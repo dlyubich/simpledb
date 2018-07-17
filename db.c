@@ -260,8 +260,7 @@ int main(int argc, char *argv[]) {
 			if ((lerr = listdir(args.dir, &v)) != E_OK)
 				err_exit(args.isquiet, lerr);
 			printf("Lising keys in db:\n");
-			unsigned long i;
-			for (i = 0; i < v.n; i++) {
+			for (unsigned long i = 0; i < v.n; i++) {
 				printf(">>\t%s\n", v.vec[i]);
 				free(v.vec[i]);	 /* Just 2 show how interface works */
 			}
